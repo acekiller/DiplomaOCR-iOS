@@ -94,8 +94,9 @@
 								<reference key="IBUIToolbar" ref="176283372"/>
 								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
-							<object class="IBUIBarButtonItem" id="968519425">
-								<string key="IBUITitle">X</string>
+							<object class="IBUIBarButtonItem" id="433869686">
+								<int key="IBUITag">5</int>
+								<string key="IBUITitle">Crop</string>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="176283372"/>
@@ -104,32 +105,20 @@
 									<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 								</object>
 							</object>
-							<object class="IBUIBarButtonItem" id="837733252">
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<reference key="IBUIToolbar" ref="176283372"/>
-								<int key="IBUISystemItemIdentifier">5</int>
-							</object>
-							<object class="IBUIBarButtonItem" id="314995363">
-								<string key="IBUITitle">Y</string>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<int key="IBUIStyle">1</int>
-								<reference key="IBUIToolbar" ref="176283372"/>
-								<reference key="IBUITintColor" ref="997026374"/>
-							</object>
 							<object class="IBUIBarButtonItem" id="511023536">
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<reference key="IBUIToolbar" ref="176283372"/>
 								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
-							<object class="IBUIBarButtonItem" id="433869686">
-								<string key="IBUITitle">Crop</string>
+							<object class="IBUIBarButtonItem" id="759312291">
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="176283372"/>
 								<object class="NSColor" key="IBUITintColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MCAwLjUwMTk2MDgxNCAwLjI1MDk4MDQwNwA</bytes>
+									<bytes key="NSRGB">MC4yNTA5ODA0MDcgMC43MjIyNTcwNzEyIDAAA</bytes>
 								</object>
+								<int key="IBUISystemItemIdentifier">0</int>
 							</object>
 						</array>
 						<reference key="IBUITintColor" ref="997026374"/>
@@ -198,19 +187,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">xButton</string>
+						<string key="label">cropButton</string>
 						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="968519425"/>
+						<reference key="destination" ref="433869686"/>
 					</object>
-					<int key="connectionID">29</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">yButton</string>
-						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="314995363"/>
-					</object>
-					<int key="connectionID">30</int>
+					<int key="connectionID">32</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -264,22 +245,6 @@
 					</object>
 					<int key="connectionID">21</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">x_pressed:</string>
-						<reference key="source" ref="968519425"/>
-						<reference key="destination" ref="841351856"/>
-					</object>
-					<int key="connectionID">27</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">y_pressed:</string>
-						<reference key="source" ref="314995363"/>
-						<reference key="destination" ref="841351856"/>
-					</object>
-					<int key="connectionID">28</int>
-				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -317,10 +282,8 @@
 							<reference ref="344565779"/>
 							<reference ref="598042185"/>
 							<reference ref="433869686"/>
-							<reference ref="968519425"/>
-							<reference ref="837733252"/>
-							<reference ref="314995363"/>
 							<reference ref="511023536"/>
+							<reference ref="759312291"/>
 						</array>
 						<reference key="parent" ref="766721923"/>
 					</object>
@@ -362,23 +325,13 @@
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">23</int>
-						<reference key="object" ref="968519425"/>
-						<reference key="parent" ref="176283372"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">24</int>
-						<reference key="object" ref="837733252"/>
-						<reference key="parent" ref="176283372"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">25</int>
-						<reference key="object" ref="314995363"/>
-						<reference key="parent" ref="176283372"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">26</int>
 						<reference key="object" ref="511023536"/>
+						<reference key="parent" ref="176283372"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">31</int>
+						<reference key="object" ref="759312291"/>
 						<reference key="parent" ref="176283372"/>
 					</object>
 				</array>
@@ -392,10 +345,8 @@
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="23.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="24.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="25.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="31.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -406,7 +357,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">30</int>
+			<int key="maxID">32</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -418,8 +369,6 @@
 						<string key="imageButtonPressed:">id</string>
 						<string key="selectingArea:">UIPanGestureRecognizer</string>
 						<string key="selectorSizeChanging:">UIPinchGestureRecognizer</string>
-						<string key="x_pressed:">id</string>
-						<string key="y_pressed:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="cropButtonPressed:">
@@ -438,22 +387,17 @@
 							<string key="name">selectorSizeChanging:</string>
 							<string key="candidateClassName">UIPinchGestureRecognizer</string>
 						</object>
-						<object class="IBActionInfo" key="x_pressed:">
-							<string key="name">x_pressed:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="y_pressed:">
-							<string key="name">y_pressed:</string>
-							<string key="candidateClassName">id</string>
-						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="cropButton">UIBarButtonItem</string>
 						<string key="cropSelector">UIView</string>
 						<string key="imageView">UIImageView</string>
-						<string key="xButton">UIBarButtonItem</string>
-						<string key="yButton">UIBarButtonItem</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="cropButton">
+							<string key="name">cropButton</string>
+							<string key="candidateClassName">UIBarButtonItem</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="cropSelector">
 							<string key="name">cropSelector</string>
 							<string key="candidateClassName">UIView</string>
@@ -461,14 +405,6 @@
 						<object class="IBToOneOutletInfo" key="imageView">
 							<string key="name">imageView</string>
 							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="xButton">
-							<string key="name">xButton</string>
-							<string key="candidateClassName">UIBarButtonItem</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="yButton">
-							<string key="name">yButton</string>
-							<string key="candidateClassName">UIBarButtonItem</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

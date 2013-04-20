@@ -21,7 +21,6 @@
     is_source_type_selected   = NO;
     is_Camera_Source          = YES;
     is_Y_scale_direction      = YES;
-    is_scale_changing_pressed = NO;
     
     min_selector_height = 50;
     min_selector_width  = 160;
@@ -47,19 +46,30 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationItem setTitle:@"Image resource"];
+    [self.navigationItem setTitle:@"Image"];
     [self.navigationController.navigationBar setTintColor:[UIColor lightGrayColor]];
     
-    scaleButton = [[UIBarButtonItem alloc] initWithTitle:@"Scale"
-                                                   style:UIBarButtonItemStyleBordered
-                                                  target:self
-                                                  action:@selector(scaleChangingPressed:)];
-    [scaleButton setTintColor:[UIColor lightGrayColor]];
-    [self.navigationItem setRightBarButtonItem:scaleButton];
-    [xButton setTintColor:[UIColor lightGrayColor]];
-    [yButton setTintColor:[UIColor lightGrayColor]];
-    [xButton setEnabled:NO];
-    [yButton setEnabled:NO];
+    if (!scaleButton) {
+        scaleButton = [[UIBarButtonItem alloc] initWithTitle:@"Scale area"
+                                                       style:UIBarButtonItemStyleBordered
+                                                      target:self
+                                                      action:@selector(scaleChangingPressed)];
+        [scaleButton setTintColor:[UIColor lightGrayColor]];
+        [self.navigationItem setRightBarButtonItem:scaleButton];
+    }
+    [scaleButton setEnabled:NO];
+    
+    if (!cancelButton) {
+        cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel crop"
+                                                        style:UIBarButtonItemStyleBordered
+                                                       target:self
+                                                       action:@selector(cancelButtonPressed)];
+        [cancelButton setTintColor:[UIColor colorWithRed:0.5 green:0.25 blue:0.25 alpha:1]];
+        [self.navigationItem setLeftBarButtonItem:cancelButton];
+    }
+    [cancelButton setEnabled:NO];
+    
+    [cropSelector setHidden:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -147,14 +157,29 @@
     [imagePicker release];
 }//imageButtonPressed
 
+//Tag = 5 first and visible items
+//Tag = 6 second and crop
 -(IBAction)cropButtonPressed:(id)sender
 {
+    //sender is cropButton
+    if ([imageView image]) {
+        if ([sender tag] == 5) {
+            [scaleButton setEnabled:YES];
+            [cancelButton setEnabled:YES];
+            [cropSelector setHidden:NO];
+            
+            [sender setTag:6];
+        }
+        else {
+            NSLog(@"Crop accepted!");
+            [sender setTag:5];
+        }
+    }
     
 }//cropButtonPressed
 
 -(IBAction)selectingArea:(UIPanGestureRecognizer *)recognizer
 {
-    if (!is_scale_changing_pressed) {
         switch (recognizer.state) {
                 
             case UIGestureRecognizerStateChanged: {
@@ -192,50 +217,27 @@
                 
                 break;
         }//switch
-    }//if
 }//selectingArea
 
--(void)scaleChangingPressed:(id)sender
+-(void)scaleChangingPressed
 {
-    if (!is_scale_changing_pressed) {
-        
-        [scaleButton setTintColor:[UIColor colorWithRed:0.25 green:0.75 blue:0.25 alpha:1]];
-        if (is_Y_scale_direction) {
-            [xButton setTintColor:[UIColor colorWithRed:0.75 green:0.25 blue:0.25 alpha:1]];
-            [yButton setTintColor:[UIColor colorWithRed:0.25 green:0.75 blue:0.25 alpha:1]];
-        }
-        else{
-            [xButton setTintColor:[UIColor colorWithRed:0.25 green:0.75 blue:0.25 alpha:1]];
-            [yButton setTintColor:[UIColor colorWithRed:0.75 green:0.25 blue:0.25 alpha:1]];
-        }
-        
-        [xButton setEnabled:YES];
-        [yButton setEnabled:YES];
-        is_scale_changing_pressed = YES;
-    }
-    else{
-        [scaleButton setTintColor:[UIColor lightGrayColor]];
-        [xButton setTintColor:[UIColor lightGrayColor]];
-        [yButton setTintColor:[UIColor lightGrayColor]];
-        [xButton setEnabled:NO];
-        [yButton setEnabled:NO];
-        is_scale_changing_pressed = NO;
-    }
+    UIActionSheet *scaleDirection = [[UIActionSheet alloc] initWithTitle:@"Direction"
+                                                                delegate:self
+                                                       cancelButtonTitle:@"Cancel"
+                                                  destructiveButtonTitle:nil
+                                                       otherButtonTitles:@"X", @"Y", nil];
+    [scaleDirection showFromBarButtonItem:scaleButton animated:YES];
+    [scaleDirection release];
 }//scaleChaningPressed
 
--(IBAction)x_pressed:(id)sender
+-(void)cancelButtonPressed
 {
-    is_Y_scale_direction = NO;
-    [xButton setTintColor:[UIColor colorWithRed:0.25 green:0.75 blue:0.25 alpha:1]];
-    [yButton setTintColor:[UIColor colorWithRed:0.75 green:0.25 blue:0.25 alpha:1]];
-}//x_pressed
-
--(IBAction)y_pressed:(id)sender
-{
-    is_Y_scale_direction = YES;
-    [xButton setTintColor:[UIColor colorWithRed:0.75 green:0.25 blue:0.25 alpha:1]];
-    [yButton setTintColor:[UIColor colorWithRed:0.25 green:0.75 blue:0.25 alpha:1]];
-}//y_pressed
+    [cropButton setTag:5];
+    [cropSelector setHidden:YES];
+    [cancelButton setEnabled:NO];
+    [scaleButton setEnabled:NO];
+    
+}//cancelButtonPressed
 
 -(IBAction)selectorSizeChanging:(UIPinchGestureRecognizer *)recognizer
 {
@@ -301,13 +303,30 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+// 0 - X
+// 1 - Y
+// 2 - Cancel
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            is_Y_scale_direction = NO;
+            break;
+        case 1:
+            is_Y_scale_direction = YES;
+        default:
+            break;
+    }
+}
+
 // ===================================================
 
 -(void)dealloc
 {
     [scaleButton release];
-    [xButton release];
-    [yButton release];
+    [cancelButton release];
+    [cropButton release];
+    [cropSelector release];
     
     [super dealloc];
 }
