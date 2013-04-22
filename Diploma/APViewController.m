@@ -18,8 +18,6 @@
 
 - (void)viewDidLoad
 {
-    is_source_type_selected   = NO;
-    is_Camera_Source          = YES;
     is_Y_scale_direction      = YES;
     
     min_selector_height = 50;
@@ -72,15 +70,6 @@
     [cropSelector setHidden:YES];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    if (!is_source_type_selected) {
-        [self showAlertView];
-    }
-    
-    NSLog(@"Origin: %f x %f", CGRectGetMinX(self.cropSelector.frame), CGRectGetMinY(self.cropSelector.frame));
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -94,68 +83,92 @@
  * ===================================================
  */
 
--(void)showAlertView
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Image source"
-                                                    message:@"Select your image source"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Library"
-                                          otherButtonTitles:@"Camera", nil];
-    [alert show];
-    [alert release];
-    
-}//showAlertView
-
 -(IBAction)imageButtonPressed:(id)sender
+{
+    UIActionSheet *sourceType = [[UIActionSheet alloc] initWithTitle:@"Direction"
+                                                                delegate:self
+                                                       cancelButtonTitle:@"Cancel"
+                                                  destructiveButtonTitle:nil
+                                                       otherButtonTitles:@"Camera", @"Library", nil];
+    [sourceType setTag:1];
+    [sourceType showFromBarButtonItem:imageButton animated:YES];
+    [sourceType release];
+}//imageButtonPressed
+
+-(void)imagePickingCamera
 {
     //create a image picker
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
-    
-    //select source type
-    if (is_Camera_Source) {
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        }
-        else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Whoops!"
-                                                            message:@"Camera unavailable.\nChoose from library."
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Ok :`("
-                                                  otherButtonTitles:nil];
-            [alert show];
-            [alert release];
-            
-            imagePicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-        }
-    }
-    else{
-        imagePicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-    }
-    
     imagePicker.allowsEditing = NO;
     imagePicker.navigationBarHidden = YES;
     
+    //set source type
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Whoops!"
+                                                        message:@"Camera unavailable.\nChoose from library."
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok :`("
+                                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+            
+        [imagePicker release];
+        [self imagePickingLibrary];
+    }
+    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         imagePicker.wantsFullScreenLayout = YES;
-        [self presentModalViewController:imagePicker animated:YES];        
+        [self presentModalViewController:imagePicker animated:YES];
     } else {
         if ([self.popOver isPopoverVisible]) {
             [self.popOver dismissPopoverAnimated:YES];
-            [self.popOver release];
+            //[self.popOver release];
         }
         else{
             self.popOver = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
             self.popOver.delegate = self;
-            [self.popOver presentPopoverFromBarButtonItem:sender
-                                 permittedArrowDirections:UIPopoverArrowDirectionDown
+            [self.popOver presentPopoverFromBarButtonItem:imageButton
+                                 permittedArrowDirections:UIPopoverArrowDirectionAny
                                                  animated:YES];
             
         }
     }
     
     [imagePicker release];
-}//imageButtonPressed
+}//imagePickingCamera
+
+-(void)imagePickingLibrary
+{
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.delegate = self;
+    imagePicker.allowsEditing = NO;
+    imagePicker.navigationBarHidden = YES;
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        imagePicker.wantsFullScreenLayout = YES;
+        [self presentModalViewController:imagePicker animated:YES];
+    } else {
+        if ([self.popOver isPopoverVisible]) {
+            [self.popOver dismissPopoverAnimated:YES];
+            //[self.popOver release];
+        }
+        else{
+            self.popOver = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
+            self.popOver.delegate = self;
+            [self.popOver presentPopoverFromBarButtonItem:imageButton
+                                 permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                 animated:YES];
+            
+        }
+    }
+    
+    [imagePicker release];
+}//imagePickingLibrary
 
 //Tag = 5 first and visible items
 //Tag = 6 second and crop
@@ -226,6 +239,7 @@
                                                        cancelButtonTitle:@"Cancel"
                                                   destructiveButtonTitle:nil
                                                        otherButtonTitles:@"X", @"Y", nil];
+    [scaleDirection setTag:2];
     [scaleDirection showFromBarButtonItem:scaleButton animated:YES];
     [scaleDirection release];
 }//scaleChaningPressed
@@ -258,25 +272,11 @@
  * ===================================================
  */
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (!is_source_type_selected) {
-        if (buttonIndex == 0) {
-            is_Camera_Source = NO;
-        }
-        else{
-            is_Camera_Source = YES;
-        }
-        
-        is_source_type_selected = YES;
-    }
-}
-
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         [self.popOver dismissPopoverAnimated:YES];
-        [self.popOver release];
+        //[self.popOver release];
     }
     
     NSString *contentType = [info objectForKey:UIImagePickerControllerMediaType];
@@ -303,19 +303,43 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-// 0 - X
-// 1 - Y
-// 2 - Cancel
+
+/*
+ * Tag = 1: Image source
+ * 0 - Camera
+ * 1 - Library
+ * 2 - Cancel
+ * ==========
+ * Tag = 2: Scale direction
+ * 0 - X
+ * 1 - Y
+ * 2 - Cancel
+ */
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    switch (buttonIndex) {
-        case 0:
-            is_Y_scale_direction = NO;
-            break;
-        case 1:
-            is_Y_scale_direction = YES;
-        default:
-            break;
+    if (actionSheet.tag == 1) {
+        switch (buttonIndex) {
+            case 0: // Camera
+                [self imagePickingCamera];
+                break;
+            case 1: //Library
+                [self imagePickingLibrary];
+                break;
+            default:
+                break;
+        }
+    }
+    else{
+        switch (buttonIndex) {
+            case 0: //X
+                is_Y_scale_direction = NO;
+                break;
+            case 1: //Y
+                is_Y_scale_direction = YES;
+                break;
+            default: //Cancel
+                break;
+        }
     }
 }
 

@@ -8,15 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface APViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, UIPopoverControllerDelegate, UIActionSheetDelegate>
+@interface APViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate, UIActionSheetDelegate>
 {
-    BOOL is_source_type_selected;
-    BOOL is_Camera_Source;
     BOOL is_Y_scale_direction;
     
     UIBarButtonItem *scaleButton;
     UIBarButtonItem *cancelButton;
     IBOutlet UIBarButtonItem *cropButton;
+    IBOutlet UIBarButtonItem *imageButton;
     
     float bottomBorder;
     int selectorWidth;
@@ -34,13 +33,13 @@
 -(IBAction)imageButtonPressed:(id)sender;
 -(IBAction)cropButtonPressed:(id)sender;
 
+-(void)imagePickingCamera;
+-(void)imagePickingLibrary;
 -(void)scaleChangingPressed;
 -(void)cancelButtonPressed;
 
 -(IBAction)selectingArea:(UIPanGestureRecognizer *)recognizer;
 -(IBAction)selectorSizeChanging:(UIPinchGestureRecognizer *) recognizer;
-
--(void)showAlertView;
 
 /*
  

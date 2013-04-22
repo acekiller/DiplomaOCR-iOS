@@ -298,7 +298,10 @@
 				GCC_PREFIX_HEADER = "Diploma/Diploma-Prefix.pch";
 				INFOPLIST_FILE = "Diploma/Diploma-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos6.0;
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -315,7 +318,10 @@
 				GCC_PREFIX_HEADER = "Diploma/Diploma-Prefix.pch";
 				INFOPLIST_FILE = "Diploma/Diploma-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos6.0;
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -339,6 +345,7 @@
 				84E83220171F339D00192D6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
