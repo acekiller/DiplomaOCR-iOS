@@ -85,7 +85,7 @@
 
 -(IBAction)imageButtonPressed:(id)sender
 {
-    UIActionSheet *sourceType = [[UIActionSheet alloc] initWithTitle:@"Direction"
+    UIActionSheet *sourceType = [[UIActionSheet alloc] initWithTitle:@"Image source"
                                                                 delegate:self
                                                        cancelButtonTitle:@"Cancel"
                                                   destructiveButtonTitle:nil
