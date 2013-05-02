@@ -8,48 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+@class APEditViewController;
+
 @interface APViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate, UIActionSheetDelegate>
 {
-    BOOL is_Y_scale_direction;
-    
-    UIBarButtonItem *scaleButton;
-    UIBarButtonItem *cancelButton;
-    IBOutlet UIBarButtonItem *cropButton;
+    UIBarButtonItem *editButton;
     IBOutlet UIBarButtonItem *imageButton;
-    
-    float bottomBorder;
-    int selectorWidth;
-    int selectorHeight;
-    int min_selector_width;
-    int max_selector_width;
-    int min_selector_height;
-    int max_selector_height;
+    IBOutlet UIImageView *imageView;
+    APEditViewController *editController;
 }
 
-@property (retain, nonatomic) IBOutlet UIImageView *imageView;
-@property (retain, nonatomic) IBOutlet UIView *cropSelector;
+@property (retain, nonatomic) UIImage *image;
 @property (strong, nonatomic) UIPopoverController *popOver;
 
 -(IBAction)imageButtonPressed:(id)sender;
--(IBAction)cropButtonPressed:(id)sender;
 
--(void)imagePickingCamera;
--(void)imagePickingLibrary;
--(void)scaleChangingPressed;
--(void)cancelButtonPressed;
-
--(IBAction)selectingArea:(UIPanGestureRecognizer *)recognizer;
--(IBAction)selectorSizeChanging:(UIPinchGestureRecognizer *) recognizer;
-
-/*
- 
-  * TODO: Scaling
-  * HAVE: origin position (x, y)
-  * SET : 
- 
- x: 128 64 0  (RGB)
- y: 63 182 43 (RGB)
- 
- */
+-(void)editButtonPressed;
+-(void)imagePickingCamera:(id)sender;
+-(void)imagePickingLibrary:(id)sender;
 
 @end

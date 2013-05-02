@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84C34FFD1728429500BC3414 /* APEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C34FFB1728429500BC3414 /* APEditViewController.m */; };
+		84C34FFE1728429500BC3414 /* APEditViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84C34FFC1728429500BC3414 /* APEditViewController_iPad.xib */; };
+		84C350001728430500BC3414 /* APEditViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84C34FFF1728430500BC3414 /* APEditViewController_iPhone.xib */; };
 		84E831FC171F339A00192D6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E831FB171F339A00192D6E /* UIKit.framework */; };
 		84E831FE171F339A00192D6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E831FD171F339A00192D6E /* Foundation.framework */; };
 		84E83200171F339A00192D6E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E831FF171F339A00192D6E /* CoreGraphics.framework */; };
@@ -27,6 +30,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84C34FFA1728429500BC3414 /* APEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APEditViewController.h; sourceTree = "<group>"; };
+		84C34FFB1728429500BC3414 /* APEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APEditViewController.m; sourceTree = "<group>"; };
+		84C34FFC1728429500BC3414 /* APEditViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APEditViewController_iPad.xib; sourceTree = "<group>"; };
+		84C34FFF1728430500BC3414 /* APEditViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APEditViewController_iPhone.xib; sourceTree = "<group>"; };
 		84E831F7171F339A00192D6E /* Diploma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diploma.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E831FB171F339A00192D6E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		84E831FD171F339A00192D6E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -113,6 +120,10 @@
 				84E83202171F339D00192D6E /* Supporting Files */,
 				84E83235171F4F6F00192D6E /* APImagePickerController.h */,
 				84E83236171F4F6F00192D6E /* APImagePickerController.m */,
+				84C34FFA1728429500BC3414 /* APEditViewController.h */,
+				84C34FFB1728429500BC3414 /* APEditViewController.m */,
+				84C34FFF1728430500BC3414 /* APEditViewController_iPhone.xib */,
+				84C34FFC1728429500BC3414 /* APEditViewController_iPad.xib */,
 			);
 			path = Diploma;
 			sourceTree = "<group>";
@@ -189,6 +200,8 @@
 				84E83212171F339D00192D6E /* Default-568h@2x.png in Resources */,
 				84E83218171F339D00192D6E /* APViewController_iPhone.xib in Resources */,
 				84E8321B171F339D00192D6E /* APViewController_iPad.xib in Resources */,
+				84C34FFE1728429500BC3414 /* APEditViewController_iPad.xib in Resources */,
+				84C350001728430500BC3414 /* APEditViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +216,7 @@
 				84E8320C171F339D00192D6E /* APAppDelegate.m in Sources */,
 				84E83215171F339D00192D6E /* APViewController.m in Sources */,
 				84E83237171F4F6F00192D6E /* APImagePickerController.m in Sources */,
+				84C34FFD1728429500BC3414 /* APEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,7 +258,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -258,7 +272,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -272,13 +286,14 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -297,11 +312,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Diploma/Diploma-Prefix.pch";
 				INFOPLIST_FILE = "Diploma/Diploma-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos6.0;
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -317,11 +332,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Diploma/Diploma-Prefix.pch";
 				INFOPLIST_FILE = "Diploma/Diploma-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos6.0;
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
