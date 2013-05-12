@@ -1,11 +1,19 @@
 +-------------+
+|May 13 2013  |
++-------------+------------+
+|1. Result view was added. |
+|2. About view was added.  |
+|3. Some issues were fixed.|
++--------------------------+
+================================================
++-------------+
 |May 02 2013  |
 +-------------+--------------------------------+
 |1. Main view does picking image.              |
 |2. Edit menu was added.                       |
 |3. Edit menu is the APEditViewController.     |
 |4. Edit menu: crop, select and rotate image.  |
-|5. Rotate image in edit mode not realized yet.|
+|5. Rotate image in edit mode not realised yet.|
 +----------------------------------------------+
 ================================================
 +-------------+

@@ -8,6 +8,7 @@
 
 #import "APViewController.h"
 #import "APEditViewController.h"
+#import "APResultViewController.h"
 
 @interface APViewController ()
 
@@ -27,6 +28,10 @@
 {
     [self.navigationItem setTitle:@"Image"];
     [self.navigationController.navigationBar setTintColor:[UIColor lightGrayColor]];
+
+    if (image) {
+        imageView.image = image;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,22 +59,45 @@
     [sourceType release];
 }//imageButtonPressed
 
--(void)editButtonPressed
+-(IBAction)doneButtonPressed:(id)sender
 {
-    NSString *xibName;
+    // TODO: Replace to recognition by neuronet
+    // ----------------------------------------
+    NSString *nibName;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        xibName = @"APEditViewController_iPhone";
+        nibName = @"APResultViewController_iPhone";
     }
     else{
-        xibName = @"APEditViewController_iPad";
+        nibName = @"APResultViewController_iPad";
+    }
+    
+    if (!resultControlller) {
+        resultControlller = [[APResultViewController alloc] initWithNibName:nibName bundle:nil];
+    }
+    
+    [nibName release];
+    
+    [self.navigationController pushViewController:resultControlller animated:YES];
+    // ----------------------------------------
+    
+}//doneButtonPressed
+
+-(void)editButtonPressed
+{
+    NSString *nibName;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        nibName = @"APEditViewController_iPhone";
+    }
+    else{
+        nibName = @"APEditViewController_iPad";
     }
     
     if (!editController) {
-        editController = [[APEditViewController alloc] initWithNibName:xibName bundle:nil];
+        editController = [[APEditViewController alloc] initWithNibName:nibName bundle:nil];
         [editController setParent:self];
     }
     
-    [xibName release];
+    [nibName release];
     
     editController.image = self.image;
     [self.navigationController pushViewController:editController animated:YES];
@@ -149,6 +177,12 @@
     
     [imagePicker release];
 }//imagePickingLibrary
+
+-(void)clearImageView
+{
+    [imageView removeFromSuperview];
+}//clearImageView
+
 // ===================================================
 
 

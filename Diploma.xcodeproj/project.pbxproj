@@ -10,6 +10,14 @@
 		84C34FFD1728429500BC3414 /* APEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C34FFB1728429500BC3414 /* APEditViewController.m */; };
 		84C34FFE1728429500BC3414 /* APEditViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84C34FFC1728429500BC3414 /* APEditViewController_iPad.xib */; };
 		84C350001728430500BC3414 /* APEditViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84C34FFF1728430500BC3414 /* APEditViewController_iPhone.xib */; };
+		84D62D3E174032FD00276998 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D62D391740300100276998 /* icon.png */; };
+		84D62D3F174034FB00276998 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D62D3C1740314F00276998 /* icon@2x.png */; };
+		84D62D4317403D1600276998 /* APResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D62D4117403D1600276998 /* APResultViewController.m */; };
+		84D62D4417403D1600276998 /* APResultViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D62D4217403D1600276998 /* APResultViewController_iPad.xib */; };
+		84D62D4617403D3500276998 /* APResultViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D62D4517403D3500276998 /* APResultViewController_iPhone.xib */; };
+		84D62D4A1740418900276998 /* APAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D62D481740418900276998 /* APAboutViewController.m */; };
+		84D62D4B1740418900276998 /* APAboutViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D62D491740418900276998 /* APAboutViewController_iPad.xib */; };
+		84D62D4D174041A000276998 /* APAboutViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D62D4C174041A000276998 /* APAboutViewController_iPhone.xib */; };
 		84E831FC171F339A00192D6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E831FB171F339A00192D6E /* UIKit.framework */; };
 		84E831FE171F339A00192D6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E831FD171F339A00192D6E /* Foundation.framework */; };
 		84E83200171F339A00192D6E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E831FF171F339A00192D6E /* CoreGraphics.framework */; };
@@ -26,7 +34,6 @@
 		84E8322C171F392A00192D6E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E8322B171F392A00192D6E /* AVFoundation.framework */; };
 		84E8322E171F395A00192D6E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E8322D171F395A00192D6E /* libz.dylib */; };
 		84E83230171F39D200192D6E /* OpenCV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E8322F171F39D200192D6E /* OpenCV.framework */; };
-		84E83237171F4F6F00192D6E /* APImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E83236171F4F6F00192D6E /* APImagePickerController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +41,16 @@
 		84C34FFB1728429500BC3414 /* APEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APEditViewController.m; sourceTree = "<group>"; };
 		84C34FFC1728429500BC3414 /* APEditViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APEditViewController_iPad.xib; sourceTree = "<group>"; };
 		84C34FFF1728430500BC3414 /* APEditViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APEditViewController_iPhone.xib; sourceTree = "<group>"; };
+		84D62D391740300100276998 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		84D62D3C1740314F00276998 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		84D62D4017403D1600276998 /* APResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APResultViewController.h; sourceTree = "<group>"; };
+		84D62D4117403D1600276998 /* APResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APResultViewController.m; sourceTree = "<group>"; };
+		84D62D4217403D1600276998 /* APResultViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APResultViewController_iPad.xib; sourceTree = "<group>"; };
+		84D62D4517403D3500276998 /* APResultViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APResultViewController_iPhone.xib; sourceTree = "<group>"; };
+		84D62D471740418900276998 /* APAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APAboutViewController.h; sourceTree = "<group>"; };
+		84D62D481740418900276998 /* APAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APAboutViewController.m; sourceTree = "<group>"; };
+		84D62D491740418900276998 /* APAboutViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APAboutViewController_iPad.xib; sourceTree = "<group>"; };
+		84D62D4C174041A000276998 /* APAboutViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APAboutViewController_iPhone.xib; sourceTree = "<group>"; };
 		84E831F7171F339A00192D6E /* Diploma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diploma.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E831FB171F339A00192D6E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		84E831FD171F339A00192D6E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -55,8 +72,6 @@
 		84E8322B171F392A00192D6E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		84E8322D171F395A00192D6E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		84E8322F171F39D200192D6E /* OpenCV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCV.framework; path = "../../Downloads/aptogo-OpenCVForiPhone-cb262eb/OpenCV.framework"; sourceTree = "<group>"; };
-		84E83235171F4F6F00192D6E /* APImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APImagePickerController.h; sourceTree = "<group>"; };
-		84E83236171F4F6F00192D6E /* APImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APImagePickerController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +95,8 @@
 		84E831EC171F339A00192D6E = {
 			isa = PBXGroup;
 			children = (
+				84D62D3C1740314F00276998 /* icon@2x.png */,
+				84D62D391740300100276998 /* icon.png */,
 				84E83201171F339A00192D6E /* Diploma */,
 				84E831FA171F339A00192D6E /* Frameworks */,
 				84E831F8171F339A00192D6E /* Products */,
@@ -118,12 +135,18 @@
 				84E83216171F339D00192D6E /* APViewController_iPhone.xib */,
 				84E83219171F339D00192D6E /* APViewController_iPad.xib */,
 				84E83202171F339D00192D6E /* Supporting Files */,
-				84E83235171F4F6F00192D6E /* APImagePickerController.h */,
-				84E83236171F4F6F00192D6E /* APImagePickerController.m */,
 				84C34FFA1728429500BC3414 /* APEditViewController.h */,
 				84C34FFB1728429500BC3414 /* APEditViewController.m */,
 				84C34FFF1728430500BC3414 /* APEditViewController_iPhone.xib */,
 				84C34FFC1728429500BC3414 /* APEditViewController_iPad.xib */,
+				84D62D4017403D1600276998 /* APResultViewController.h */,
+				84D62D4117403D1600276998 /* APResultViewController.m */,
+				84D62D4517403D3500276998 /* APResultViewController_iPhone.xib */,
+				84D62D4217403D1600276998 /* APResultViewController_iPad.xib */,
+				84D62D471740418900276998 /* APAboutViewController.h */,
+				84D62D481740418900276998 /* APAboutViewController.m */,
+				84D62D4C174041A000276998 /* APAboutViewController_iPhone.xib */,
+				84D62D491740418900276998 /* APAboutViewController_iPad.xib */,
 			);
 			path = Diploma;
 			sourceTree = "<group>";
@@ -202,6 +225,12 @@
 				84E8321B171F339D00192D6E /* APViewController_iPad.xib in Resources */,
 				84C34FFE1728429500BC3414 /* APEditViewController_iPad.xib in Resources */,
 				84C350001728430500BC3414 /* APEditViewController_iPhone.xib in Resources */,
+				84D62D3E174032FD00276998 /* icon.png in Resources */,
+				84D62D3F174034FB00276998 /* icon@2x.png in Resources */,
+				84D62D4417403D1600276998 /* APResultViewController_iPad.xib in Resources */,
+				84D62D4617403D3500276998 /* APResultViewController_iPhone.xib in Resources */,
+				84D62D4B1740418900276998 /* APAboutViewController_iPad.xib in Resources */,
+				84D62D4D174041A000276998 /* APAboutViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,8 +244,9 @@
 				84E83208171F339D00192D6E /* main.m in Sources */,
 				84E8320C171F339D00192D6E /* APAppDelegate.m in Sources */,
 				84E83215171F339D00192D6E /* APViewController.m in Sources */,
-				84E83237171F4F6F00192D6E /* APImagePickerController.m in Sources */,
 				84C34FFD1728429500BC3414 /* APEditViewController.m in Sources */,
+				84D62D4317403D1600276998 /* APResultViewController.m in Sources */,
+				84D62D4A1740418900276998 /* APAboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
