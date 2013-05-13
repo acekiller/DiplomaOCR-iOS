@@ -44,6 +44,7 @@
     }
     
     [self.navigationItem setRightBarButtonItem:aboutButton];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,7 +86,12 @@
     [actionSheet showFromBarButtonItem:sender animated:YES];
 
     [actionSheet release];
-}
+}//actionButtonPressed
+
+-(IBAction)doneEditing:(UITapGestureRecognizer *) recognizer
+{
+    [self.view endEditing:YES];
+}//doneEditing
 // =============================
 
 // Delegates

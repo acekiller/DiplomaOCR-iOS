@@ -16,11 +16,14 @@
     APViewController *parent;
     APAboutViewController *aboutController;
     
+    IBOutlet UITextView *resultTextView;
+    
     UIBarButtonItem *aboutButton;
 }
 
 -(void)aboutBarButtonPressed;
 
 -(IBAction)actionButtonPressed:(id)sender;
+-(IBAction)doneEditing:(UITapGestureRecognizer *)recognizer;
 
 @end
