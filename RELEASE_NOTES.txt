@@ -1,4 +1,15 @@
 +-------------+
+|May 20 2013  |
++-------------+-----------------------------------------+
+|1. Committed to brach "NewGui"                         |
+|2. Edit menu was added instead of Edit view controller |
+|3. Scaling of cropSelector realised via UIStepper      |
+|                                                       |
+|Current issue:                                         |
+|1. Cannot drag cropSelector with changed size.         |
++-------------------------------------------------------+
+================================================
++-------------+
 |May 13 2013  |
 +-------------+------------+
 |1. Result view was added. |

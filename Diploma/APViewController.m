@@ -22,6 +22,23 @@
 {    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    min_selector_height  = 50;
+    min_selector_width   = 160;
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        bottomBorder        = 375.0;
+        selectorWidth       = 320;
+        selectorHeight      = 150;
+        max_selector_height = 375;
+        max_selector_width  = 320;
+    }
+    else{
+        bottomBorder        = 916.0;
+        selectorWidth       = 768;
+        selectorHeight      = 200;
+        max_selector_height = 916;
+        max_selector_width  = 768;
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -32,6 +49,25 @@
     if (image) {
         imageView.image = image;
     }
+    
+    // ---
+    [cropSelectorView setHidden:YES];
+    [editMenuView setHidden:YES];
+    
+    is_edit_menu_shown = NO;
+    //is_height_scaling = YES;
+    [widthScale setMaximumValue:max_selector_width];
+    [heightScale setMaximumValue:max_selector_height];
+    
+    [widthScale setValue:selectorWidth];
+    [heightScale setValue:selectorHeight];
+    
+    [widthScale setMinimumValue:min_selector_width];
+    [heightScale setMinimumValue:min_selector_height];
+    
+    [widthScale setStepValue:10];
+    [heightScale setStepValue:10];
+    // ---
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,6 +120,28 @@
 
 -(void)editButtonPressed
 {
+    // ---
+    if (editMenuView.hidden) {        
+        CGRect editMenuFrame = editMenuView.frame;
+        editMenuFrame.origin.x = 295;
+        editMenuView.frame = editMenuFrame;
+        
+        [doneBtn setEnabled:NO];
+        [editMenuView setHidden:NO];
+        [cropSelectorView setHidden:NO];
+        
+        menuCallerBtn.transform = CGAffineTransformMakeRotation(M_PI);
+        
+        [editButton setTintColor:[UIColor darkGrayColor]];
+    }
+    else{
+        [editMenuView setHidden:YES];
+        [cropSelectorView setHidden:YES];
+        [doneBtn setEnabled:YES];
+        [editButton setTintColor:[UIColor lightGrayColor]];
+    }
+    // ---
+    /*
     NSString *nibName;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         nibName = @"APEditViewController_iPhone";
@@ -101,6 +159,7 @@
     
     editController.image = self.image;
     [self.navigationController pushViewController:editController animated:YES];
+    */
 }
 
 -(void)imagePickingCamera:(id)sender
@@ -183,6 +242,131 @@
     [imageView removeFromSuperview];
 }//clearImageView
 
+// ---
+
+-(IBAction)showHideEditMenu:(id)sender
+{
+    if (is_edit_menu_shown) {
+        [self setEditMenuPosition:295 animationDirection:@"Out"];
+        [editMenuView setAlpha:0.3];
+        is_edit_menu_shown = NO;
+    }
+    else{
+        [self setEditMenuPosition:191 animationDirection:@"In"];
+        [editMenuView setAlpha:0.8];
+        is_edit_menu_shown = YES;
+    }
+}//showHideEditMenu
+
+-(IBAction)cropImage:(id)sender
+{
+    
+}//cropImage
+
+-(IBAction)confirmCrop:(id)sender
+{
+    
+}//confirmCrop
+
+-(IBAction)cancelCrop:(id)sender
+{
+    
+}//cancelCrop
+
+-(IBAction)selectArea:(UIPanGestureRecognizer *)recognizer
+{
+    switch (recognizer.state) {
+            
+        case UIGestureRecognizerStateChanged: {
+            
+            CGPoint translation = [recognizer translationInView:self.view];
+            
+            //allow dragging only in Y coordinates by only updating the Y coordinate with translation position
+            recognizer.view.center = CGPointMake(recognizer.view.center.x, recognizer.view.center.y + translation.y);
+            
+            [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
+            
+            //get the top edge coordinate for the top left corner of crop frame
+            float topEdgePosition = CGRectGetMinY(cropSelectorView.frame);
+            
+            //get the bottom edge coordinate for bottom left corner of crop frame
+            float bottomEdgePosition = CGRectGetMaxY(cropSelectorView.frame);
+            
+            //if the top edge coordinate is less than or equal to 53
+            if (topEdgePosition <= 0) {
+                //draw drag view in max top position
+                cropSelectorView.frame = CGRectMake(0, 0, selectorWidth, selectorHeight);
+                
+            }
+            
+            //if bottom edge coordinate is greater than or equal to 480
+            
+            if (bottomEdgePosition >= bottomBorder) {
+                //draw drag view in max bottom position
+                cropSelectorView.frame = CGRectMake(0, bottomBorder - selectorHeight, selectorWidth, selectorHeight);
+            }
+            
+        }   break;
+            
+        default:
+            
+            break;
+    }//switch
+}//selectArea
+
+// Tag == 1: Height
+// Tag == 2: Width
+-(IBAction)scaleSelector:(UIStepper *)sender
+{
+    CGFloat x = cropSelectorView.frame.origin.x;
+    CGFloat y = cropSelectorView.frame.origin.y;
+    
+    float newWidth = cropSelectorView.frame.size.width;
+    float newHeight = cropSelectorView.frame.size.height;
+    
+    if (sender.tag == 1) {
+        newHeight = (float)sender.value;
+    }
+    if (sender.tag == 2) {
+        newWidth = (float)sender.value;
+    }
+
+    cropSelectorView.frame = CGRectMake(x, y, newWidth, newHeight);
+}//scaleSelector
+
+-(IBAction)rotateImage:(UIRotationGestureRecognizer *)recognizer
+{
+    
+}//rotateImage
+
+-(void)setEditMenuPosition:(int)x_position animationDirection:(NSString *)direction
+{
+    CGRect editMenuFrame = editMenuView.frame;
+    editMenuFrame.origin.x = x_position;
+    
+    if ([direction isEqualToString:@"In"]) {
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+        menuCallerBtn.transform = CGAffineTransformMakeRotation(0);
+        
+    }
+    else if ([direction isEqualToString:@"Out"]) {
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        menuCallerBtn.transform = CGAffineTransformMakeRotation(M_PI);
+    }
+    else{
+        NSLog(@"Wrong animation direction!\nIn/Out only.");
+        return;
+    }
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationDelay:0];
+    
+    editMenuView.frame = editMenuFrame;
+}//setEditMenuPosition
+
+// ---
+
 // ===================================================
 
 
@@ -263,6 +447,13 @@
 {
     [editButton release];
     [editController release];
+    [imageButton release];
+    [imageView release];
+    [resultControlller release];
+    [doneBtn release];
+    [cropSelectorView release];
+    [editMenuView release];
+    [menuCallerBtn release];
     
     [super dealloc];
 }

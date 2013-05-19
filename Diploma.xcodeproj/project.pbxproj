@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84ADE67F174974D90017C9F4 /* editMenuBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84ADE67E174974D90017C9F4 /* editMenuBg.png */; };
 		84C34FFD1728429500BC3414 /* APEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C34FFB1728429500BC3414 /* APEditViewController.m */; };
 		84C34FFE1728429500BC3414 /* APEditViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84C34FFC1728429500BC3414 /* APEditViewController_iPad.xib */; };
 		84C350001728430500BC3414 /* APEditViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84C34FFF1728430500BC3414 /* APEditViewController_iPhone.xib */; };
@@ -37,12 +38,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84ADE67E174974D90017C9F4 /* editMenuBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editMenuBg.png; sourceTree = SOURCE_ROOT; };
 		84C34FFA1728429500BC3414 /* APEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APEditViewController.h; sourceTree = "<group>"; };
 		84C34FFB1728429500BC3414 /* APEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APEditViewController.m; sourceTree = "<group>"; };
 		84C34FFC1728429500BC3414 /* APEditViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APEditViewController_iPad.xib; sourceTree = "<group>"; };
 		84C34FFF1728430500BC3414 /* APEditViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APEditViewController_iPhone.xib; sourceTree = "<group>"; };
-		84D62D391740300100276998 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		84D62D3C1740314F00276998 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		84D62D391740300100276998 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
+		84D62D3C1740314F00276998 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
 		84D62D4017403D1600276998 /* APResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APResultViewController.h; sourceTree = "<group>"; };
 		84D62D4117403D1600276998 /* APResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APResultViewController.m; sourceTree = "<group>"; };
 		84D62D4217403D1600276998 /* APResultViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APResultViewController_iPad.xib; sourceTree = "<group>"; };
@@ -95,8 +97,6 @@
 		84E831EC171F339A00192D6E = {
 			isa = PBXGroup;
 			children = (
-				84D62D3C1740314F00276998 /* icon@2x.png */,
-				84D62D391740300100276998 /* icon.png */,
 				84E83201171F339A00192D6E /* Diploma */,
 				84E831FA171F339A00192D6E /* Frameworks */,
 				84E831F8171F339A00192D6E /* Products */,
@@ -134,7 +134,6 @@
 				84E83214171F339D00192D6E /* APViewController.m */,
 				84E83216171F339D00192D6E /* APViewController_iPhone.xib */,
 				84E83219171F339D00192D6E /* APViewController_iPad.xib */,
-				84E83202171F339D00192D6E /* Supporting Files */,
 				84C34FFA1728429500BC3414 /* APEditViewController.h */,
 				84C34FFB1728429500BC3414 /* APEditViewController.m */,
 				84C34FFF1728430500BC3414 /* APEditViewController_iPhone.xib */,
@@ -147,6 +146,7 @@
 				84D62D481740418900276998 /* APAboutViewController.m */,
 				84D62D4C174041A000276998 /* APAboutViewController_iPhone.xib */,
 				84D62D491740418900276998 /* APAboutViewController_iPad.xib */,
+				84E83202171F339D00192D6E /* Supporting Files */,
 			);
 			path = Diploma;
 			sourceTree = "<group>";
@@ -154,6 +154,9 @@
 		84E83202171F339D00192D6E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				84D62D391740300100276998 /* icon.png */,
+				84D62D3C1740314F00276998 /* icon@2x.png */,
+				84ADE67E174974D90017C9F4 /* editMenuBg.png */,
 				84E83203171F339D00192D6E /* Diploma-Info.plist */,
 				84E83204171F339D00192D6E /* InfoPlist.strings */,
 				84E83207171F339D00192D6E /* main.m */,
@@ -231,6 +234,7 @@
 				84D62D4617403D3500276998 /* APResultViewController_iPhone.xib in Resources */,
 				84D62D4B1740418900276998 /* APAboutViewController_iPad.xib in Resources */,
 				84D62D4D174041A000276998 /* APAboutViewController_iPhone.xib in Resources */,
+				84ADE67F174974D90017C9F4 /* editMenuBg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
