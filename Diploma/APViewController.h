@@ -55,7 +55,6 @@
 -(IBAction)showHideEditMenu:(id)sender;
 -(IBAction)cropImage:(id)sender;
 -(IBAction)confirmCrop:(id)sender;
--(IBAction)cancelCrop:(id)sender;
 
 -(IBAction)selectArea:(UIPanGestureRecognizer *)recognizer;
 -(IBAction)scaleSelector:(UIStepper *)sender;

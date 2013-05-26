@@ -127,6 +127,7 @@
         editMenuView.frame = editMenuFrame;
         
         [doneBtn setEnabled:NO];
+        [imageButton setEnabled:NO];
         [editMenuView setHidden:NO];
         [cropSelectorView setHidden:NO];
         
@@ -138,6 +139,7 @@
         [editMenuView setHidden:YES];
         [cropSelectorView setHidden:YES];
         [doneBtn setEnabled:YES];
+        [imageButton setEnabled:YES];
         [editButton setTintColor:[UIColor lightGrayColor]];
     }
     // ---
@@ -175,6 +177,8 @@
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
     }
     else{
+        [imagePicker release];
+        imagePicker = nil;
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Whoops!"
                                                         message:@"Camera unavailable.\nChoose from library."
                                                        delegate:self
@@ -182,17 +186,17 @@
                                               otherButtonTitles:nil];
         [alert show];
         [alert release];
-            
-        [imagePicker release];
+        
         [self imagePickingLibrary:sender];
+        return;
     }
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         imagePicker.wantsFullScreenLayout = YES;
-        [self presentModalViewController:imagePicker animated:YES];
+        [self presentModalViewController:imagePicker animated:NO];
     } else {
         if ([self.popOver isPopoverVisible]) {
-            [self.popOver dismissPopoverAnimated:YES];
+            [self.popOver dismissPopoverAnimated:NO];
             //[self.popOver release];
         }
         else{
@@ -200,12 +204,14 @@
             self.popOver.delegate = self;
             [self.popOver presentPopoverFromBarButtonItem:sender
                                  permittedArrowDirections:UIPopoverArrowDirectionAny
-                                                 animated:YES];
+                                                 animated:NO];
             
         }
     }
     
-    [imagePicker release];
+    if (imagePicker) {
+        [imagePicker release];
+    }
 }//imagePickingCamera
 
 -(void)imagePickingLibrary:(id)sender
@@ -218,10 +224,10 @@
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         imagePicker.wantsFullScreenLayout = YES;
-        [self presentModalViewController:imagePicker animated:YES];
+        [self presentModalViewController:imagePicker animated:NO];
     } else {
         if ([self.popOver isPopoverVisible]) {
-            [self.popOver dismissPopoverAnimated:YES];
+            [self.popOver dismissPopoverAnimated:NO];
             //[self.popOver release];
         }
         else{
@@ -229,7 +235,7 @@
             self.popOver.delegate = self;
             [self.popOver presentPopoverFromBarButtonItem:sender
                                  permittedArrowDirections:UIPopoverArrowDirectionAny
-                                                 animated:YES];
+                                                 animated:NO];
             
         }
     }
@@ -268,11 +274,6 @@
     
 }//confirmCrop
 
--(IBAction)cancelCrop:(id)sender
-{
-    
-}//cancelCrop
-
 -(IBAction)selectArea:(UIPanGestureRecognizer *)recognizer
 {
     switch (recognizer.state) {
@@ -282,29 +283,36 @@
             CGPoint translation = [recognizer translationInView:self.view];
             
             //allow dragging only in Y coordinates by only updating the Y coordinate with translation position
-            recognizer.view.center = CGPointMake(recognizer.view.center.x, recognizer.view.center.y + translation.y);
+            recognizer.view.center = CGPointMake(recognizer.view.center.x + translation.x, recognizer.view.center.y + translation.y);
             
             [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
             
             //get the top edge coordinate for the top left corner of crop frame
+            float leftEdgePosition = CGRectGetMinX(cropSelectorView.frame);
             float topEdgePosition = CGRectGetMinY(cropSelectorView.frame);
             
             //get the bottom edge coordinate for bottom left corner of crop frame
+            float rightEdgePosition = CGRectGetMaxX(cropSelectorView.frame);
             float bottomEdgePosition = CGRectGetMaxY(cropSelectorView.frame);
             
-            //if the top edge coordinate is less than or equal to 53
+            float newX = cropSelectorView.frame.origin.x;
+            float newY = cropSelectorView.frame.origin.y;
+            
+            if (leftEdgePosition <= 0) {
+                newX = 0;
+            }
+            if (rightEdgePosition >= max_selector_width) {
+                newX = max_selector_width - selectorWidth;
+            }
+            
             if (topEdgePosition <= 0) {
-                //draw drag view in max top position
-                cropSelectorView.frame = CGRectMake(0, 0, selectorWidth, selectorHeight);
-                
+                newY = 0;
+            }
+            if (bottomEdgePosition >= max_selector_height) {
+                newY = max_selector_height - selectorHeight;
             }
             
-            //if bottom edge coordinate is greater than or equal to 480
-            
-            if (bottomEdgePosition >= bottomBorder) {
-                //draw drag view in max bottom position
-                cropSelectorView.frame = CGRectMake(0, bottomBorder - selectorHeight, selectorWidth, selectorHeight);
-            }
+            cropSelectorView.frame = CGRectMake(newX, newY, selectorWidth, selectorHeight);
             
         }   break;
             
@@ -332,6 +340,9 @@
     }
 
     cropSelectorView.frame = CGRectMake(x, y, newWidth, newHeight);
+    
+    selectorHeight = newHeight;
+    selectorWidth = newWidth;
 }//scaleSelector
 
 -(IBAction)rotateImage:(UIRotationGestureRecognizer *)recognizer
